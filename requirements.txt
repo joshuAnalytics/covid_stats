@@ -23,7 +23,7 @@ jsonschema==3.2.0
 kiwisolver==1.2.0
 MarkupSafe==1.1.1
 matplotlib==3.2.1
-mkl-fft==1.0.15
+# mkl-fft==1.0.15
 mkl-service==2.3.0
 numpy==1.18.1
 pandas==0.25.3
