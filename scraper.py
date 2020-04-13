@@ -72,6 +72,10 @@ def generate_dataframe(countries,numbers):
     df.loc[:,'recov'] = df['recov'].astype(float).copy()
     
     df = df.set_index('country')
+    
+    #calculate additional metrics
+    df['death_rate(as_%_cases)'] = df['deaths'] / df['cases'] * 100
+    
     return df
 
 def get_latest_data():
