@@ -74,7 +74,7 @@ def generate_dataframe(countries,numbers):
     df = df.set_index('country')
     
     #calculate additional metrics
-    df['death_rate(as_%_cases)'] = df['deaths'] / df['cases'] * 100
+    df['death_rate_%'] = df['deaths'] / df['cases'] * 100
     
     return df
 
