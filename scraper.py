@@ -51,13 +51,22 @@ def generate_dataframe(countries,numbers):
         last_row +=4
     
     df = pd.DataFrame(data)
-    #remove the hyphen like chars
+    #remove non alpha chars
     df.replace("-",value=np.nan,inplace=True)
     df.replace("–",value=np.nan,inplace=True)
     df.replace("—",value=np.nan,inplace=True)
+    df.replace(" ",value=np.nan,inplace=True)
+    
     #remove the rows with text
     df = df.loc[~df['cases'].str.contains("[A-Za-z]")]
-    # #convert to float
+    
+    #check if dataframe contains any strings
+    assert df['cases'].str.contains("[A-Za-z]").any() == False
+    
+    #set empty fields as null
+    df.replace("",np.NaN,inplace=True)
+    
+    #convert to float
     df.loc[:,'cases'] = df['cases'].astype(float).copy()
     df.loc[:,'deaths'] = df['deaths'].astype(float).copy()
     df.loc[:,'recov'] = df['recov'].astype(float).copy()
@@ -65,7 +74,7 @@ def generate_dataframe(countries,numbers):
     df = df.set_index('country')
     return df
 
-def main():
+def get_latest_data():
     soup = scrape_website()
     countries = get_countries(soup)
     numbers = get_numbers(soup)
@@ -74,4 +83,4 @@ def main():
     return df
 
 if __name__ == "__main__":
-    main()
+    get_latest_data()
