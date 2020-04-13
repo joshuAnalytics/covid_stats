@@ -15,3 +15,23 @@ def bar_chart(df,x,y,n):
         color='gray'
     )
     return chart
+
+def scatter_plot(df,x,y,z,n):
+    plot = df.sort_values(by=y,ascending=False)
+    plot = plot.iloc[0:n]
+    plot.reset_index(inplace=True)
+    
+    points = alt.Chart(plot).mark_point().encode(
+    x=x + ":Q",
+    y=y + ":Q"
+)
+
+    text = points.mark_text(
+        align='left',
+        baseline='middle',
+        dx=7
+    ).encode(
+        text=z
+    )
+
+    return points + text
