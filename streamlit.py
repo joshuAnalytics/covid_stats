@@ -29,7 +29,7 @@ chart = bar_chart(df,'country','deaths',n=n)
 st.altair_chart(chart)
 chart = bar_chart(df,'country','cases',n=n)
 st.altair_chart(chart)
-scatter = scatter_plot(df,'cases','pop_density_2018','country',10)
+scatter = scatter_plot(df,'cases','pop_density','country',10)
 st.altair_chart(scatter)
 
 st.markdown('### data table\n', unsafe_allow_html=False)

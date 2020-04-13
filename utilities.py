@@ -17,14 +17,13 @@ def bar_chart(df,x,y,n):
     return chart
 
 def scatter_plot(df,x,y,z,n):
-    plot = df.sort_values(by=y,ascending=False)
-    plot = plot.iloc[0:n]
+    plot = df.iloc[0:n]
     plot.reset_index(inplace=True)
     
     points = alt.Chart(plot).mark_point().encode(
     x=x + ":Q",
     y=y + ":Q"
-)
+).properties(width=450,height=450,title=f"{y} vs {x}")
 
     text = points.mark_text(
         align='left',
