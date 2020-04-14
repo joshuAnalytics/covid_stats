@@ -12,7 +12,7 @@ import datasets
 df = datasets.import_static_data()
 totals = df.sum()
 ts = datasets.get_time_series_deaths()
-n = 10
+n = 15
 
 #title
 st.markdown("# Coronavirus data :earth_asia:\n", unsafe_allow_html=False)
@@ -22,9 +22,9 @@ st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` "
 st.markdown("  \n  \n  \n  \n")
 
 #time series deaths plot
-countries = ['United Kingdom','Spain','Germany','US','Italy']
-st.multiselect('select countries', countries, default=countries)
-
+countries = ['United Kingdom','Spain','US','Italy','France']
+all_countries = ts['country'].unique().tolist()
+# st.sidebar.multiselect('select countries', all_countries, default=countries)
 chart = utilities.line_plot(ts,countries)
 st.altair_chart(chart)
 
@@ -34,7 +34,7 @@ st.altair_chart(chart)
 chart = utilities.bar_chart(df,'country','cases',n=n)
 st.altair_chart(chart)
 
-scatter = utilities.scatter_plot(df,'cases_per_million','pop_density','country',10)
+scatter = utilities.scatter_plot(df,'cases_per_million','pop_density','country',n)
 st.altair_chart(scatter)
 
 #data table

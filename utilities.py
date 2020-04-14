@@ -23,7 +23,8 @@ def scatter_plot(df,x,y,z,n):
     points = alt.Chart(plot).mark_point().encode(
     x=x + ":Q",
     y=y + ":Q"
-).properties(width=450,height=450,title=f"{y} vs {x}")
+).properties(width=450,height=450,title=f"{y} vs {x}"
+             )
 
     text = points.mark_text(
         align='left',
