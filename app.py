@@ -5,12 +5,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import altair as alt
 #custom methods
-from utilities import bar_chart,scatter_plot
+import utilities
 import datasets
 
 #load data
 df = datasets.import_static_data()
 totals = df.sum()
+ts = datasets.get_time_series_deaths()
 n = 10
 
 #title
@@ -20,13 +21,18 @@ st.markdown(f":male_zombie: reported recoveries: `{totals['recov']:,.0f}`  \n")
 st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` ")
 st.markdown("  \n  \n  \n  \n")
 
-#top n bar plots
-chart = bar_chart(df,'country','deaths',n=n)
-st.altair_chart(chart)
-chart = bar_chart(df,'country','cases',n=n)
+#time series deaths plot
+countries = ['United Kingdom','Spain','Germany','US']
+chart = utilities.line_plot(ts,countries)
 st.altair_chart(chart)
 
-scatter = scatter_plot(df,'cases_per_million','pop_density','country',10)
+#top n bar plots
+chart = utilities.bar_chart(df,'country','deaths',n=n)
+st.altair_chart(chart)
+chart = utilities.bar_chart(df,'country','cases',n=n)
+st.altair_chart(chart)
+
+scatter = utilities.scatter_plot(df,'cases_per_million','pop_density','country',10)
 st.altair_chart(scatter)
 
 #data table

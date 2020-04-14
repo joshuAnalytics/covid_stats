@@ -53,12 +53,15 @@ def get_time_series_deaths():
     #get a unique country name to use as id
     df['Province/State'] = df['Province/State'].fillna("")
     df['country'] = df['Country/Region'] + " " + df['Province/State']
+    df['country'] = df['country'].str.rstrip()
+    #pivot the dataframe
     time_series = time_series.T
     time_series.columns = df['country']
     #melt countries and deaths into single column
     df_melted = pd.melt(time_series.reset_index(), id_vars=["index"])
     df_melted.columns = ['date','country','deaths']
     df_melted['date'] = pd.to_datetime(df_melted['date'])
+    
     return df_melted
 
 if __name__ == "__main__":

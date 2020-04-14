@@ -34,3 +34,22 @@ def scatter_plot(df,x,y,z,n):
     )
 
     return points + text
+
+def line_plot(df,countries=["United Kingdom","France","Germany","Spain"]):
+    #filter countries
+    plot = df.loc[df['country'].isin(countries)]
+    #filter time window
+    plot = plot.loc[plot['date'] > "2020-03-15"]
+    # The basic line
+    line = alt.Chart(plot).mark_line(interpolate='basis').encode(
+    x='date:T',
+    y='deaths:Q',
+    color='country:N'
+    )
+    # Put the layers into a chart and bind the data
+    chart = alt.layer(
+        line
+    ).properties(
+        width=500, height=200
+    )
+    return chart
