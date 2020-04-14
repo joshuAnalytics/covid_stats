@@ -28,12 +28,13 @@ all_countries = ts['country'].unique().tolist()
 chart = utilities.line_plot(ts,countries)
 st.altair_chart(chart)
 
-#top n bar plots
+#bar plots
 chart = utilities.bar_chart(df,'country','deaths',n=n)
 st.altair_chart(chart)
 chart = utilities.bar_chart(df,'country','cases',n=n)
 st.altair_chart(chart)
 
+#scatter plot
 scatter = utilities.scatter_plot(df,'cases_per_million','pop_density','country',n)
 st.altair_chart(scatter)
 
@@ -43,4 +44,7 @@ st.markdown("*click column headers to sort*  :arrow_up_small::arrow_down_small:"
 formatted_df = df.style.format({"cases": "{:,.0f}", "deaths": "{:,.0f}", "recov": "{:,.0f}"})
 st.write(formatted_df)
 
-st.markdown("sources  \n[wikipedia](https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data)  \n[world bank](http://api.worldbank.org/v2/en/indicator/EN.POP.DNST?downloadformat=csv)")
+st.markdown("sources  \n[wikipedia](https://en.wikipedia.org/wiki/Template:2019%E2%80%9320_coronavirus_pandemic_data)  \
+            \n[world bank](http://api.worldbank.org/v2/en/indicator/EN.POP.DNST?downloadformat=csv) \
+            \n[johns hopkins](https://github.com/CSSEGISandData/COVID-19) \
+            ")

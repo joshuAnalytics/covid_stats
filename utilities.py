@@ -23,7 +23,7 @@ def scatter_plot(df,x,y,z,n):
     points = alt.Chart(plot).mark_point().encode(
     x=x + ":Q",
     y=y + ":Q"
-).properties(width=450,height=450,title=f"{y} vs {x}"
+).properties(width=600,height=500,title=f"{y} vs {x}"
              )
 
     text = points.mark_text(
@@ -40,7 +40,7 @@ def line_plot(df,countries=["United Kingdom","France","Germany","Spain"]):
     #filter countries
     plot = df.loc[df['country'].isin(countries)]
     #filter time window
-    plot = plot.loc[plot['date'] > "2020-03-15"]
+    plot = plot.loc[plot['date'] > "2020-03-20"]
     # The basic line
     line = alt.Chart(plot).mark_line(interpolate='basis').encode(
     x='date:T',
