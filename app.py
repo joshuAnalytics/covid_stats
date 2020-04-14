@@ -1,35 +1,32 @@
+import sys
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
 import pandas as pd
 import altair as alt
 #custom methods
-from scraper import get_latest_data
 from utilities import bar_chart,scatter_plot
-from datasets import get_pop_density
+import datasets
 
-def get_data():
-    df = get_latest_data()
-    df = df.join(get_pop_density())
-    return df
-
-df = get_data()
+#load data
+df = datasets.import_static_data()
 totals = df.sum()
 n = 10
 
 #title
 st.markdown("# Coronavirus data :earth_asia:\n", unsafe_allow_html=False)
-st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` ")
 st.markdown(f":skull: reported deaths: `{totals['deaths']:,.0f}` ")
 st.markdown(f":male_zombie: reported recoveries: `{totals['recov']:,.0f}`  \n")
+st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` ")
+st.markdown("  \n  \n  \n  \n")
 
-#plots
+#top n bar plots
 chart = bar_chart(df,'country','deaths',n=n)
 st.altair_chart(chart)
 chart = bar_chart(df,'country','cases',n=n)
 st.altair_chart(chart)
-scatter = scatter_plot(df,'cases','pop_density','country',10)
+
+scatter = scatter_plot(df,'cases_per_million','pop_density','country',10)
 st.altair_chart(scatter)
 
 #data table

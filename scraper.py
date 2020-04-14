@@ -73,9 +73,6 @@ def generate_dataframe(countries,numbers):
     
     df = df.set_index('country')
     
-    #calculate additional metrics
-    df['death_rate_%'] = df['deaths'] / df['cases'] * 100
-    
     return df
 
 def get_latest_data():
@@ -83,7 +80,6 @@ def get_latest_data():
     countries = get_countries(soup)
     numbers = get_numbers(soup)
     df = generate_dataframe(countries,numbers)
-    print(df.head())
     return df
 
 if __name__ == "__main__":
