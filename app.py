@@ -22,7 +22,9 @@ st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` "
 st.markdown("  \n  \n  \n  \n")
 
 #time series deaths plot
-countries = ['United Kingdom','Spain','Germany','US']
+countries = ['United Kingdom','Spain','Germany','US','Italy']
+st.multiselect('select countries', countries, default=countries)
+
 chart = utilities.line_plot(ts,countries)
 st.altair_chart(chart)
 

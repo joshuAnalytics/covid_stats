@@ -50,6 +50,6 @@ def line_plot(df,countries=["United Kingdom","France","Germany","Spain"]):
     chart = alt.layer(
         line
     ).properties(
-        width=500, height=200
+        width=600, height=500
     )
     return chart
