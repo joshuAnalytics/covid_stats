@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+from datetime import date
 import scraper
 
 def get_wb_data(file_path,data_name):
@@ -46,7 +47,7 @@ def import_static_data():
     df = generate_features(df)
     return df
 
-def get_time_series_deaths():
+def get_csse_time_series_deaths():
     df = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
     meta_cols = ['Province/State','Country/Region','Lat','Long']
     time_series = df.drop(meta_cols,axis=1)
@@ -62,6 +63,32 @@ def get_time_series_deaths():
     df_melted.columns = ['date','country','deaths']
     df_melted['date'] = pd.to_datetime(df_melted['date'])
     
+    return df_melted
+
+def get_apple_movement_indices(movement_type='walking'):
+    """
+    get latest time series data from apple on population movement by country
+        - movement_type <str> enum "walking"|"driving|"transit"
+    """
+    try:
+        today = date.today().strftime("%Y-%m-%d")
+        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-{today}.csv'
+        df = pd.read_csv(url)
+    except:
+        df = pd.read_csv('https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-2020-04-14.csv')
+    
+    meta_cols = ['geo_type','region','transportation_type']
+    #filter by movement type
+    df_walk = df.loc[df['transportation_type'] == movement_type]
+    assert df_walk['region'].is_unique
+    time_series = df_walk.drop(meta_cols,axis=1)
+    #pivot the dataframe
+    time_series = time_series.T
+    time_series.columns = df_walk['region']
+    #melt countries and y vals into single column
+    df_melted = pd.melt(time_series.iloc[:,:].reset_index(),id_vars=['index'])
+    df_melted.columns = ['date','country','movement_index']
+    df_melted['date'] = pd.to_datetime(df_melted['date'])
     return df_melted
 
 if __name__ == "__main__":
