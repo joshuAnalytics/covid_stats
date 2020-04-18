@@ -72,10 +72,10 @@ def get_apple_movement_indices(movement_type='walking'):
     """
     try:
         today = date.today().strftime("%Y-%m-%d")
-        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-{today}.csv'
+        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev7/v1/en-us/applemobilitytrends-{today}.csv'
         df = pd.read_csv(url)
     except:
-        df = pd.read_csv('https://covid19-static.cdn-apple.com/covid19-mobility-data/2005HotfixDev14/v1/en-us/applemobilitytrends-2020-04-14.csv')
+        df = pd.read_csv('https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev7/v1/en-us/applemobilitytrends-2020-04-16.csv')
     
     meta_cols = ['geo_type','region','transportation_type']
     #filter by movement type
