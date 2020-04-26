@@ -2,6 +2,16 @@ import pandas as pd
 import json
 from datetime import date
 import scraper
+import urllib
+
+def get_csv_from_url(url,outfile):
+    """
+    download a csv from a url
+    """
+    filename = url[url.rfind("/")+1:]
+    filepath = '_data/' + outfile
+    urllib.request.urlretrieve(url, filepath)
+    return
 
 def get_wb_data(file_path,data_name):
     #http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
@@ -72,10 +82,10 @@ def get_apple_movement_indices(movement_type='walking'):
     """
     try:
         today = date.today().strftime("%Y-%m-%d")
-        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev7/v1/en-us/applemobilitytrends-{today}.csv'
+        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-{today}.csv'
         df = pd.read_csv(url)
     except:
-        df = pd.read_csv('https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev7/v1/en-us/applemobilitytrends-2020-04-16.csv')
+        df = pd.read_csv('https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-2020-04-24.csv')
     
     meta_cols = ['geo_type','region','transportation_type']
     #filter by movement type

@@ -36,7 +36,7 @@ def generate_dataframe(countries,numbers):
     last_row = 4
     data = []
     
-    for country in countries_df:
+    for country in countries_df.iloc[0:217]:
         row_numbers = numbers_df.iloc[first_row:last_row].values
         cases = row_numbers[0].replace(",","")
         deaths = row_numbers[1].replace(",","")
