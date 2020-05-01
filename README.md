@@ -3,7 +3,7 @@
 
 ## instructions for developers
 
-requirements: python 3
+requirements: [python 3](https://www.python.org/downloads/)
 
 1) clone the repository: 
 
