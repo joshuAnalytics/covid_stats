@@ -17,6 +17,15 @@ ami_d = datasets.get_apple_movement_indices('driving')
 ami_t = datasets.get_apple_movement_indices('transit')
 n = 15
 
+def plot_simple_chart(icon, title, data_type, dataframe):
+    st.markdown(f"#### :{icon}: {title}\n")
+    st.markdown(f"  \n  \n  \n  \n  \n")
+    if data_type == 'aline':
+        chart = utilities.ami_line_plot(dataframe)
+    else:
+        return
+    return st.altair_chart(chart)
+
 #title
 st.markdown("# Coronavirus data :earth_asia:\n", unsafe_allow_html=False)
 st.markdown(f":skull: reported deaths: `{totals['deaths']:,.0f}` ")
@@ -25,20 +34,9 @@ st.markdown(f":face_with_thermometer: reported cases: `{totals['cases']:,.0f}` "
 st.markdown("  \n  \n  \n  \n")
 
 #time series movement data
-st.markdown(f"#### :iphone: walking movement")
-st.markdown(f"  \n  \n  \n  \n  \n")
-chart = utilities.ami_line_plot(ami_w)
-st.altair_chart(chart)
-
-st.markdown(f"#### :blue_car: driving movement\n")
-st.markdown(f"  \n  \n  \n  \n  \n")
-chart = utilities.ami_line_plot(ami_d)
-st.altair_chart(chart)
-
-st.markdown(f"#### :train: transit movement\n")
-st.markdown(f"  \n  \n  \n  \n  \n")
-chart = utilities.ami_line_plot(ami_t)
-st.altair_chart(chart)
+plot_simple_chart('iphone','walking around','aline',ami_w)
+plot_simple_chart('blue_car','driving movement','aline',ami_d)
+plot_simple_chart('train','transit movement','aline',ami_t)
 
 #time series deaths plot
 st.markdown(f"#### :skull: deaths over time\n")
