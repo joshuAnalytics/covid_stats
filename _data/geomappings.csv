@@ -1,48 +1,48 @@
 geoJSON_region,google_region_names
 Aberdeen City,Aberdeen City
 Aberdeenshire,Aberdeenshire
-Adur,
-Allerdale,
-Amber Valley,
+Adur,West Sussex
+Allerdale,Cumbria
+Amber Valley,Derbyshire
 Angus,Angus council
 Antrim,Antrim And Newtownabbey
 Ards,Ards And North Down
 Argyll & Bute,Argyll and Bute Council
 Armagh,"Armagh City, Banbridge And Craigavon"
-Arun,
-Ashfield,
-Ashford,
-Aylesbury Vale,
-Babergh,
-Ballymena,
-Ballymoney,
-Banbridge,
+Arun,West Sussex
+Ashfield,Nottinghamshire
+Ashford,Kent
+Aylesbury Vale,Buckinghamshire
+Babergh,Suffolk
+Ballymena,Mid And East Antrim
+Ballymoney,Causeway Coast and Glens
+Banbridge,"Armagh City, Banbridge And Craigavon"
 Barking and Dagenham,Greater London
-Barnet,
-Barnsley,
-Barrow-in-Furness,
-Basildon,
-Basingstoke and Deane,
-Bassetlaw,
+Barnet,Greater London
+Barnsley,South Yorkshire
+Barrow-in-Furness,Cumbria
+Basildon,Essex
+Basingstoke and Deane,Hampshire
+Bassetlaw,Nottinghamshire
 Bath and North East Somerset,Bath and North East Somerset
 Bedford,Bedford
 Belfast,Belfast
-Bexley,
-Birmingham,
-Blaby,
+Bexley,Greater London
+Birmingham,West Midlands
+Blaby,Leicestershire
 Blackburn with Darwen,Blackburn with Darwen
 Blackpool,Blackpool
 Blaenau Gwent,Blaenau Gwent
-Bolsover,
-Bolton,
-Boston,
+Bolsover,Derbyshire
+Bolton,Greater Manchester
+Boston,Lincolnshire
 Bournemouth,
 Bracknell Forest,Bracknell Forest
 Bradford,
-Braintree,
+Braintree,Essex
 Breckland,
 Brent,Greater London
-Brentwood,
+Brentwood,Essex
 Bridgend,Bridgend County Borough
 Brighton and Hove,Brighton and Hove
 "Bristol, City of",City of Bristol
@@ -50,62 +50,62 @@ Broadland,
 Bromley,Greater London
 Bromsgrove,
 Broxbourne,
-Broxtowe,
+Broxtowe,Nottinghamshire
 Burnley,
-Bury,
+Bury,Greater Manchester
 Caerphilly,Caerphilly County Borough
 Calderdale,
 Cambridge,Cambridgeshire
 Camden,Greater London
 Cannock Chase,
-Canterbury,
+Canterbury,Kent
 Cardiff,Cardiff
-Carlisle,
+Carlisle,Cumbria
 Carmarthenshire,Carmarthenshire
-Carrickfergus,
-Castle Point,
+Carrickfergus,Mid And East Antrim
+Castle Point,Essex
 Castlereagh,
 Central Bedfordshire,Central Bedfordshire
 Ceredigion,Ceredigion
-Charnwood,
-Chelmsford,
+Charnwood,Leicestershire
+Chelmsford,Essex
 Cheltenham,
 Cherwell,
 Cheshire East,Cheshire East
 Cheshire West and Chester,Cheshire West and Chester
-Chesterfield,
+Chesterfield,Derbyshire
 Chichester,
-Chiltern,
+Chiltern,Buckinghamshire
 Chorley,
 Christchurch,
 "City of London,Westminster",Greater London
 Clackmannanshire,Clackmannanshire
-Colchester,
+Colchester,Essex
 Coleraine,
 Conwy,Conwy Principal Area
 Cookstown,
-Copeland,
+Copeland,Cumbria
 Corby,
 "Cornwall,Isles of Scilly",Cornwall
 Cotswold,
 County Durham,County Durham
-Coventry,
+Coventry,West Midlands
 Craigavon,
 Craven,
 Crawley,
 Croydon,Greater London
 Dacorum,
 Darlington,Darlington
-Dartford,
+Dartford,Kent
 Daventry,
 Denbighshire,Denbighshire
-Derby,Derby
+Derby,Derbyshire
 Derbyshire Dales,Derbyshire
 Derry,Derry And Strabane
 Doncaster,
-Dover,
+Dover,Kent
 Down,
-Dudley,
+Dudley,West Midlands
 Dumfries & Galloway,Dumfries and Galloway
 Dundee City,Dundee City Council
 Dungannon,
@@ -117,38 +117,38 @@ East Dorset,
 East Dunbartonshire,East Dunbartonshire Council
 East Hampshire,Hampshire
 East Hertfordshire,Hertfordshire
-East Lindsey,
+East Lindsey,Lincolnshire
 East Lothian,East Lothian Council
 East Northamptonshire,
 East Renfrewshire,East Renfrewshire Council
 East Riding of Yorkshire,East Riding of Yorkshire
 East Staffordshire,
 Eastbourne,
-Eastleigh,
-Eden,
+Eastleigh,Hampshire
+Eden,Cumbria
 "Edinburgh, City of",Edinburgh
 Eilean Siar,
 Elmbridge,
 Enfield,Greater London
-Epping Forest,
+Epping Forest,Essex
 Epsom and Ewell,
-Erewash,
+Erewash,Derbyshire
 Exeter,
 Falkirk,Falkirk
-Fareham,
+Fareham,Hampshire
 Fenland,
 Fermanagh,Fermanagh And Omagh
 Fife,Fife
 Flintshire,Flintshire
-Forest Heath,
+Forest Heath,Suffolk
 Forest of Dean,
 Fylde,
 Gateshead,
-Gedling,
+Gedling,Nottinghamshire
 Glasgow City,
 Gloucester,Gloucestershire
-Gosport,
-Gravesham,
+Gosport,Hampshire
+Gravesham,Kent
 Great Yarmouth,
 Greenwich,Greater London
 Guildford,
@@ -157,28 +157,28 @@ Hackney,Greater London
 Halton,Borough of Halton
 Hambleton,
 Hammersmith and Fulham,Greater London
-Harborough,
+Harborough,Leicestershire
 Haringey,Greater London
-Harlow,
+Harlow,Essex
 Harrogate,
 Harrow,Greater London
-Hart,
+Hart,Hampshire
 Hartlepool,Hartlepool
 Hastings,
-Havant,
+Havant,Hampshire
 Havering,Greater London
 "Herefordshire, County of",Herefordshire
 Hertsmere,
-High Peak,
+High Peak,Derbyshire
 Highland,Highland Council
 Hillingdon,Greater London
-Hinckley and Bosworth,
+Hinckley and Bosworth,Leicestershire
 Horsham,
 Hounslow,Greater London
 Huntingdonshire,
 Hyndburn,
 Inverclyde,Inverclyde
-Ipswich,
+Ipswich,Suffolk
 Isle of Anglesey,Isle of Anglesey
 Isle of Wight,Isle of Wight
 Islington,Greater London
@@ -191,7 +191,7 @@ Kirklees,
 Knowsley,
 Lambeth,Greater London
 Lancaster,
-Larne,
+Larne,Mid And East Antrim
 Leeds,
 Leicester,Leicester
 Lewes,
@@ -203,18 +203,18 @@ Lisburn,Lisburn and Castlereagh
 Liverpool,Merseyside
 Luton,
 Magherafelt,
-Maidstone,
-Maldon,
+Maidstone,Kent
+Maldon,Essex
 Malvern Hills,
 Manchester,Greater Manchester
-Mansfield,
-Medway,Medway
-Melton,
+Mansfield,Nottinghamshire
+Medway,Kent
+Melton,Leicestershire
 Mendip,
 Merthyr Tydfil,Merthyr Tydfil County Borough
 Merton,Greater London
 Mid Devon,
-Mid Suffolk,
+Mid Suffolk,Suffolk
 Mid Sussex,
 Middlesbrough,Middlesbrough
 Midlothian,Midlothian
@@ -224,8 +224,8 @@ Monmouthshire,Monmouthshire
 Moray,Moray
 Moyle,
 Neath Port Talbot,Neath Port Talbot Principle Area
-New Forest,
-Newark and Sherwood,
+New Forest,Hampshire
+Newark and Sherwood,Nottinghamshire
 Newcastle upon Tyne,
 Newcastle-under-Lyme,
 Newham,Greater London
@@ -239,21 +239,21 @@ North Down,
 North East Derbyshire,
 North East Lincolnshire,North East Lincolnshire
 North Hertfordshire,Hertfordshire
-North Kesteven,
+North Kesteven,Lincolnshire
 North Lanarkshire,North Lanarkshire
 North Lincolnshire,North Lincolnshire
 North Norfolk,Norfolk
 North Somerset,North Somerset
 North Tyneside,
 North Warwickshire,
-North West Leicestershire,
+North West Leicestershire,Leicestershire
 Northampton,Northamptonshire
 Northumberland,Northumberland
 Norwich,
 Nottingham,Nottingham
 Nuneaton and Bedworth,
-Oadby and Wigston,
-Oldham,
+Oadby and Wigston,Leicestershire
+Oldham,Greater Manchester
 Omagh,
 Orkney Islands,Orkney
 Oxford,Oxfordshire
@@ -277,40 +277,40 @@ Rhondda Cynon Taf,Rhondda Cynon Taff
 Ribble Valley,
 Richmond upon Thames,Greater London
 Richmondshire,
-Rochdale,
-Rochford,
+Rochdale,Greater Manchester
+Rochford,Essex
 Rossendale,
 Rother,
 Rotherham,
 Rugby,
 Runnymede,
-Rushcliffe,
-Rushmoor,
+Rushcliffe,Nottinghamshire
+Rushmoor,Hampshire
 Rutland,Rutland
 Ryedale,
-Salford,
-Sandwell,
+Salford,Greater Manchester
+Sandwell,West Midlands
 Scarborough,
 Scottish Borders,Scottish Borders
 Sedgemoor,
 Sefton,
 Selby,
-Sevenoaks,
+Sevenoaks,Kent
 Sheffield,
 Shepway,
 Shetland Islands,Shetland Islands
 Shropshire,Shropshire
 Slough,Slough
-Solihull,
+Solihull,West Midlands
 South Ayrshire,South Ayrshire Council
-South Bucks,
+South Bucks,Buckinghamshire
 South Cambridgeshire,
-South Derbyshire,
+South Derbyshire,Derbyshire
 South Gloucestershire,South Gloucestershire
 South Hams,
-South Holland,
-South Kesteven,
-South Lakeland,
+South Holland,Lincolnshire
+South Kesteven,Lincolnshire
+South Lakeland,Cumbria
 South Lanarkshire,South Lanarkshire
 South Norfolk,Norfolk
 South Northamptonshire,
@@ -324,13 +324,13 @@ Southend-on-Sea,Southend-on-Sea
 Southwark,Greater London
 Spelthorne,
 St Albans,
-St Edmundsbury,
+St Edmundsbury,Suffolk
 St. Helens,
 Stafford,Staffordshire
 Staffordshire Moorlands,Staffordshire
 Stevenage,
 Stirling,Stirling
-Stockport,
+Stockport,Greater Manchester
 Stockton-on-Tees,Stockton-on-Tees
 Stoke-on-Trent,Stoke-on-Trent
 Strabane,
@@ -340,39 +340,39 @@ Suffolk Coastal,Suffolk
 Sunderland,
 Surrey Heath,Surrey
 Sutton,Greater London
-Swale,
+Swale,Kent
 Swansea,Swansea
 Swindon,Swindon
-Tameside,
+Tameside,Greater Manchester
 Tamworth,
 Tandridge,
 Taunton Deane,
 Teignbridge,
 Telford and Wrekin,
-Tendring,
-Test Valley,
+Tendring,Essex
+Test Valley,Hampshire
 Tewkesbury,
-Thanet,
+Thanet,Kent
 The Vale of Glamorgan,
 Three Rivers,
 Thurrock,Thurrock
-Tonbridge and Malling,
+Tonbridge and Malling,Kent
 Torbay,Torbay
 Torfaen,Torfaen Principal Area
 Torridge,
 Tower Hamlets,Greater London
-Trafford,
-Tunbridge Wells,
-Uttlesford,
+Trafford,Greater Manchester
+Tunbridge Wells,Kent
+Uttlesford,Essex
 Vale of White Horse,
 Wakefield,
-Walsall,
+Walsall,West Midlands
 Waltham Forest,Greater London
 Wandsworth,Greater London
 Warrington,Warrington
 Warwick,
 Watford,
-Waveney,
+Waveney,Suffolk
 Waverley,
 Wealden,
 Wellingborough,
@@ -382,24 +382,24 @@ West Devon,
 West Dorset,
 West Dunbartonshire,West Dunbartonshire Council
 West Lancashire,
-West Lindsey,
+West Lindsey,Lincolnshire
 West Lothian,West Lothian
 West Oxfordshire,
 West Somerset,Somerset
 Weymouth and Portland,
-Wigan,
+Wigan,Greater Manchester
 Wiltshire,Wiltshire
-Winchester,
+Winchester,Hampshire
 Windsor and Maidenhead,Windsor and Maidenhead
 Wirral,
 Woking,Wokingham
 Wokingham,Wokingham
-Wolverhampton,
+Wolverhampton,West Midlands
 Worcester,Worcestershire
 Worthing,
 Wrexham,Wrexham Principal Area
 Wychavon,
-Wycombe,
+Wycombe,Buckinghamshire
 Wyre,
 Wyre Forest,
 York,York
