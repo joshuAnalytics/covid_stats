@@ -59,9 +59,13 @@ def generate_dataframe(countries,numbers):
     
     #remove the rows with text
     df = df.loc[~df['cases'].str.contains("[A-Za-z]")]
+    df = df.loc[~df['recov'].str.contains("[A-Za-z]")]
+    df = df.loc[~df['deaths'].str.contains("[A-Za-z]")]
     
     #check if dataframe contains any strings
     assert df['cases'].str.contains("[A-Za-z]").any() == False
+    assert df['recov'].str.contains("[A-Za-z]").any() == False
+    assert df['deaths'].str.contains("[A-Za-z]").any() == False
     
     #set empty fields as null
     df.replace("",np.NaN,inplace=True)
