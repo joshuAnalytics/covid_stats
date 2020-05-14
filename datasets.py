@@ -4,6 +4,7 @@ from datetime import date
 import scraper
 import urllib
 import requests
+import streamlit as st
 
 def get_csv_from_url(url,outfile):
     """
@@ -87,7 +88,7 @@ def get_latest_apple_url():
     full_url = host + base_path + csv_path
     return full_url
 
-@st.cache(allow_mutation=True)
+@st.cache()
 def get_apple_movement_indices(movement_type='walking'):
     """
     get latest time series data from apple on population movement by country
@@ -97,7 +98,7 @@ def get_apple_movement_indices(movement_type='walking'):
     try:
         url = get_latest_apple_url()
         df = pd.read_csv(url)
-        get_csv_from_url(url,'applemobilitytrends-latest.csv')
+        # get_csv_from_url(url,'applemobilitytrends-latest.csv')
         
     except:
         df = pd.read_csv("_data/applemobilitytrends-latest.csv")
