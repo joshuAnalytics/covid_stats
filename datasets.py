@@ -3,12 +3,13 @@ import json
 from datetime import date
 import scraper
 import urllib
+import requests
 
 def get_csv_from_url(url,outfile):
     """
     download a csv from a url
     """
-    filename = url[url.rfind("/")+1:]
+    # filename = url[url.rfind("/")+1:]
     filepath = '_data/' + outfile
     urllib.request.urlretrieve(url, filepath)
     return
@@ -75,17 +76,31 @@ def get_csse_time_series_deaths():
     
     return df_melted
 
+
+def get_latest_apple_url():
+    host="https://covid19-static.cdn-apple.com"
+    json_path="/covid19-mobility-data/current/v2/index.json"
+    response = requests.get(host+json_path)
+    response_json = json.loads(response.text)
+    csv_path = response_json['regions']['en-us']['csvPath']
+    base_path = response_json['basePath']
+    full_url = host + base_path + csv_path
+    return full_url
+
+@st.cache(allow_mutation=True)
 def get_apple_movement_indices(movement_type='walking'):
     """
     get latest time series data from apple on population movement by country
         - movement_type <str> enum "walking"|"driving|"transit"
     """
+    
     try:
-        today = date.today().strftime("%Y-%m-%d")
-        url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-{today}.csv'
+        url = get_latest_apple_url()
         df = pd.read_csv(url)
+        get_csv_from_url(url,'applemobilitytrends-latest.csv')
+        
     except:
-        df = pd.read_csv("https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev57/v2/en-us/applemobilitytrends-2020-05-10.csv")
+        df = pd.read_csv("_data/applemobilitytrends-latest.csv")
     
     meta_cols = ['geo_type','region','transportation_type']
     #filter by movement type
