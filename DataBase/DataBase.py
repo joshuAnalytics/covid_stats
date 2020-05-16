@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class DataBase(ABC):
+class ABCDataBase(ABC):
     def __init__(self, data_dir: str):
         self.data_dir: str = data_dir
         

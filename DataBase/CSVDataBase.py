@@ -1,16 +1,19 @@
-import pandas as pd
 import json
-from datetime import date
 import scraper
 import urllib
-from covid_stats import DataBase
+import pandas as pd
+# import argparse
+from pathlib import Path
+from datetime import date
+from DataBase.DataBase import ABCDataBase
 
-class CSVDataBase(DataBase):
+
+class CSVDataBase(ABCDataBase):
     '''
     Data is stored in and loaded from CSVs.  
     '''
-    def __init__(self, data_dir: str):
-        self.data_dir: str = data_dir
+    def __init__(self, data_dir):
+        self.data_dir = data_dir
 
     def pull_data(self):
         '''Pulls from all data sources and stores in CSV files'''
@@ -33,54 +36,61 @@ class CSVDataBase(DataBase):
         urllib.request.urlretrieve(url, filepath)
         return
 
-    def _get_wb_data(self, file_path, data_name):
-        #http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
-        df = pd.read_csv(file_path,skiprows=4)
+    def _get_world_bank_data(self, file_path, data_name):
+        # http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
+        df = pd.read_csv(file_path, skiprows=4)
         series = df.set_index('Country Name')['2018']
         series.name = data_name
-        
-        #fix the mismatched names in the world bank data
+
+        # fix the mismatched names in the world bank data
         with open('name_mapping.json') as json_file:
             name_mapping = json.load(json_file)
-        
+
         data = series.reset_index()
-        data['Country Name'].replace(name_mapping,inplace=True)
-        data.set_index('Country Name',inplace=True)
-        
+        data['Country Name'].replace(name_mapping, inplace=True)
+        data.set_index('Country Name', inplace=True)
+
         return data
 
-    def _join_wb_data(self):
-        #get pop density
-        #http://api.worldbank.org/v2/en/indicator/EN.POP.DNST?downloadformat=csv
-        pop_density = get_wb_data('API_EN.POP.DNST_DS2_en_csv_v2_936296.csv','pop_density')
+    def _join_world_bank_data(self):
+        # get pop density
+        # http://api.worldbank.org/v2/en/indicator/EN.POP.DNST?downloadformat=csv
+        pop_density = self._get_world_bank_data(
+            'API_EN.POP.DNST_DS2_en_csv_v2_936296.csv',
+            'pop_density'
+            )
 
-        #get population
-        #http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
-        pop_total = get_wb_data('API_SP.POP.TOTL_DS2_en_csv_v2_936048.csv','pop')
-        
+        # get population
+        # http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
+        pop_total = self._get_world_bank_data(
+            'API_SP.POP.TOTL_DS2_en_csv_v2_936048.csv',
+            'pop_total'
+            )
+
         wb_data = pd.concat([pop_density, pop_total], axis=1)
         return wb_data
 
     def _join_data_sources(self):
         df = scraper.get_latest_data()
-        df = df.join(join_wb_data())
+        df = df.join(self._join_world_bank_data())
         return df
 
     def _generate_features(self, df):
         df['deaths_per_million'] = df['deaths'] / df['pop'] * 1000000
         df['cases_per_million'] = df['cases'] / df['pop'] * 1000000
-        #calculate additional metrics
+
+        # calculate additional metrics
         df['death_rate_%'] = df['deaths'] / df['cases'] * 100
         return df
 
-    def _import_static_data(self):
-        df = join_data_sources()
-        df = generate_features(df)
+    def import_static_data(self):
+        df = self._join_data_sources()
+        df = self._generate_features(df)
         return df
 
-    def _get_csse_time_series_deaths(self):
+    def get_csse_time_series_deaths(self):
         df = pd.read_csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
-        meta_cols = ['Province/State','Country/Region','Lat','Long']
+        meta_cols = ['Province/State', 'Country/Region', 'Lat', 'Long']
         time_series = df.drop(meta_cols, axis=1)
 
         # get a unique country name to use as id
@@ -99,14 +109,15 @@ class CSVDataBase(DataBase):
 
         return df_melted
 
-    def _get_apple_movement_indices(self, movement_type='walking'):
+    def get_apple_movement_indices(self, movement_type='walking'):
         """
-        get latest time series data from apple on population movement by country
-            - movement_type <str> enum "walking"|"driving|"transit"
+        Get latest time series data from apple on population movement by 
+        country
+            - movement_type <str> enum "walking" | "driving" | "transit"
         """
         try:
             today = date.today().strftime("%Y-%m-%d")
-            url = f'https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-{today}.csv'
+            url = f"https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-{today}.csv"
             df = pd.read_csv(url)
         except:
             df = pd.read_csv("https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev47/v2/en-us/applemobilitytrends-2020-05-03.csv")
@@ -123,16 +134,19 @@ class CSVDataBase(DataBase):
         time_series.columns = df_walk['region']
 
         # melt countries and y vals into single column
-        df_melted = pd.melt(time_series.iloc[:,:].reset_index(), id_vars=['index'])
+        df_melted = pd.melt(
+            time_series.iloc[:, :].reset_index(),
+            id_vars=['index']
+            )
         df_melted.columns = ['date', 'country', 'movement_index']
         df_melted['date'] = pd.to_datetime(df_melted['date'], errors='coerce')
         return df_melted
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--infile', '-I', help='input csv path')
-    parser.add_argument('--outfile', '-O', help='output json path')
-    parser.add_argument('--map', '-M', help='path to the map data rtree.')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--update', '-U', help='updates daily data sources')
+    # parser.add_argument('--all', '-A', help='updates all data sources')
+    # args = parser.parse_args()
 
-    CSVDataBase().update_data()
+    data_dir = Path.cwd() / 'data'
+    CSVDataBase(data_dir).update_data()
