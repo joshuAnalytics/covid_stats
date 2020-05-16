@@ -76,8 +76,8 @@ class CSVDataBase(ABCDataBase):
         return df
 
     def _generate_features(self, df):
-        df['deaths_per_million'] = df['deaths'] / df['pop'] * 1000000
-        df['cases_per_million'] = df['cases'] / df['pop'] * 1000000
+        df['deaths_per_million'] = df['deaths'] / df['pop_total'] * 1000000
+        df['cases_per_million'] = df['cases'] / df['pop_total'] * 1000000
 
         # calculate additional metrics
         df['death_rate_%'] = df['deaths'] / df['cases'] * 100

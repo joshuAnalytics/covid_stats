@@ -1,15 +1,15 @@
 import streamlit as st
 import utilities
-import datasets as db
+# import datasets as db
 from pathlib import Path
-# from DataBase.CSVDataBase import CSVDataBase
+from DataBase.CSVDataBase import CSVDataBase
 
 
 def movement_time_series_page():
     # load data
-    # data_dir = Path.cwd() / 'data'
-    # print(data_dir)
-    # db = CSVDataBase(data_dir)
+    data_dir = Path.cwd() / 'data'
+    print(data_dir)
+    db = CSVDataBase(data_dir)
 
     df = db.import_static_data()
     totals = df.sum()

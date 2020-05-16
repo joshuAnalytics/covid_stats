@@ -1,15 +1,19 @@
 import streamlit as st
 import pandas as pd
 import utilities
-import datasets
-
+# import datasets
+from pathlib import Path
+from DataBase.CSVDataBase import CSVDataBase
 
 def main_stats_page():
+    data_dir = Path.cwd() / 'data'
+    print(data_dir)
+    db = CSVDataBase(data_dir)
 
     # load data
-    df = datasets.import_static_data()
+    df = db.import_static_data()
     totals = df.sum()
-    ts = datasets.get_csse_time_series_deaths()
+    ts = db.get_csse_time_series_deaths()
     n = 15
 
     st.markdown(f":skull: reported deaths: `{totals['deaths']:,.0f}` ")
@@ -29,7 +33,7 @@ def main_stats_page():
     # bar plots
     chart = utilities.bar_chart(df, 'country', 'deaths', n=n)
     st.altair_chart(chart)
-    chart = utilities.bar_chart(df,'country','cases',n=n)
+    chart = utilities.bar_chart(df, 'country', 'cases', n=n)
     st.altair_chart(chart)
 
     # scatter plot
