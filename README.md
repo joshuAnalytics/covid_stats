@@ -12,7 +12,7 @@ Ultimately we may wish to share the app more broadly.
 
 ## where to start
 
-* join the discussion on [slack](covid-19-data-vis.slack.com)
+* join the discussion on [slack](http://covid-19-data-vis.slack.com)
 * check the [issues page](https://github.com/joshuAnalytics/covid_stats/issues)
 * view the current items on the [project kanban](https://github.com/joshuAnalytics/covid_stats/projects/1)
 
