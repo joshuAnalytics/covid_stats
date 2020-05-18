@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
 import utilities
-# import datasets
 from pathlib import Path
 from DataBase.CSVDataBase import CSVDataBase
 
+
 def main_stats_page():
     data_dir = Path.cwd() / 'data'
-    print(data_dir)
     db = CSVDataBase(data_dir)
 
     # load data
@@ -62,8 +61,4 @@ def main_stats_page():
         \n[world bank](http://api.worldbank.org/v2/en/indicator/EN.POP.DNST?downloadformat=csv) \
         \n[johns hopkins](https://github.com/CSSEGISandData/COVID-19) \
         \n[apple](https://www.apple.com/covid19/mobility) \
-                "
-                )
-
-if __name__ == "__main__":
-    main()
+        ")

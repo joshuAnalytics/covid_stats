@@ -1,8 +1,9 @@
 import json
 import scraper
 import urllib
+import requests
 import pandas as pd
-# import argparse
+import streamlit as st
 from pathlib import Path
 from datetime import date
 from DataBase.DataBase import ABCDataBase
@@ -10,7 +11,7 @@ from DataBase.DataBase import ABCDataBase
 
 class CSVDataBase(ABCDataBase):
     '''
-    Data is stored in and loaded from CSVs.  
+    Data is stored in and loaded from CSVs.
     '''
     def __init__(self, data_dir):
         self.data_dir = data_dir
@@ -31,7 +32,7 @@ class CSVDataBase(ABCDataBase):
         """
         download a csv from a url
         """
-        filename = url[url.rfind("/")+1:]
+        filename = url[url.rfind("/") + 1:]
         filepath = '_data/' + outfile
         urllib.request.urlretrieve(url, filepath)
         return
@@ -83,6 +84,16 @@ class CSVDataBase(ABCDataBase):
         df['death_rate_%'] = df['deaths'] / df['cases'] * 100
         return df
 
+    def _get_latest_apple_url(self):
+        host = "https://covid19-static.cdn-apple.com"
+        json_path = "/covid19-mobility-data/current/v2/index.json"
+        response = requests.get(host + json_path)
+        response_json = json.loads(response.text)
+        csv_path = response_json['regions']['en-us']['csvPath']
+        base_path = response_json['basePath']
+        full_url = host + base_path + csv_path
+        return full_url
+
     def import_static_data(self):
         df = self._join_data_sources()
         df = self._generate_features(df)
@@ -109,18 +120,19 @@ class CSVDataBase(ABCDataBase):
 
         return df_melted
 
+    @st.cache()
     def get_apple_movement_indices(self, movement_type='walking'):
         """
-        Get latest time series data from apple on population movement by 
-        country
-            - movement_type <str> enum "walking" | "driving" | "transit"
+        get latest time series data from apple on population movement by country
+            - movement_type <str> enum "walking"|"driving|"transit"
         """
+
         try:
-            today = date.today().strftime("%Y-%m-%d")
-            url = f"https://covid19-static.cdn-apple.com/covid19-mobility-data/2006HotfixDev16/v1/en-us/applemobilitytrends-{today}.csv"
+            url = self._get_latest_apple_url()
             df = pd.read_csv(url)
+
         except:
-            df = pd.read_csv("https://covid19-static.cdn-apple.com/covid19-mobility-data/2007HotfixDev47/v2/en-us/applemobilitytrends-2020-05-03.csv")
+            df = pd.read_csv("_data/applemobilitytrends-latest.csv")
 
         meta_cols = ['geo_type', 'region', 'transportation_type']
 
@@ -134,10 +146,7 @@ class CSVDataBase(ABCDataBase):
         time_series.columns = df_walk['region']
 
         # melt countries and y vals into single column
-        df_melted = pd.melt(
-            time_series.iloc[:, :].reset_index(),
-            id_vars=['index']
-            )
+        df_melted = pd.melt(time_series.iloc[:, :].reset_index(), id_vars=['index'])
         df_melted.columns = ['date', 'country', 'movement_index']
         df_melted['date'] = pd.to_datetime(df_melted['date'], errors='coerce')
         return df_melted

@@ -8,7 +8,6 @@ from DataBase.CSVDataBase import CSVDataBase
 def movement_time_series_page():
     # load data
     data_dir = Path.cwd() / 'data'
-    print(data_dir)
     db = CSVDataBase(data_dir)
 
     df = db.import_static_data()
