@@ -59,7 +59,7 @@ def ami_line_plot(df,countries=["UK","United States","France","Spain","Italy"]):
     #filter countries
     plot = df.loc[df['country'].isin(countries)]
     #filter time window
-    plot = plot.loc[plot['date'] > "2020-03-01"]
+    plot = plot.loc[plot['date'] > "2020-04-01"]
     # The basic line
     line = alt.Chart(plot).mark_line(interpolate='basis').encode(
     x='date:T',
