@@ -7,7 +7,7 @@ def bar_chart(df,x,y,n):
     chart = alt.Chart(plot_data).mark_bar().encode(
         alt.X(x, sort=alt.EncodingSortField(field="country", op="count", order='ascending')),
         alt.Y(y)
-    ).properties(width=400,height=250,title=f"{y} by {x} (top {n})")
+    ).properties(width=600,height=500,title=f"{y} by {x} (top {n})")
     chart.configure_title(
         fontSize=20,
         font='Courier',
