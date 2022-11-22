@@ -28,7 +28,7 @@ matplotlib==3.2.1
 numpy==1.18.1
 pandas==0.25.3
 pathtools==0.1.2
-Pillow==7.1.1
+Pillow==9.3.0
 protobuf==3.11.3
 pyparsing==2.4.7
 pyrsistent==0.16.0
